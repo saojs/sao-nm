@@ -1,0 +1,222 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`add cli 1`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "cli.js",
+  "index.js",
+  "package.json",
+]
+`;
+
+exports[`add cli 2`] = `
+Object {
+  "bin": "cli.js",
+  "dependencies": Object {
+    "cac": "^4.0.0",
+  },
+}
+`;
+
+exports[`donateUrl 1`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "index.js",
+  "package.json",
+]
+`;
+
+exports[`donateUrl 2`] = `
+Object {
+  "scripts": Object {
+    "lint": "xo",
+    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove sao-temp? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[34mhttp://donate.com\\\\u001b[0m')\\"",
+    "test": "npm run lint && echo 'no tests!'",
+  },
+}
+`;
+
+exports[`npm5: add coverage 1`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "index.js",
+  "package.json",
+  "test/index.test.js",
+]
+`;
+
+exports[`npm5: add coverage 2`] = `
+"version: 2
+jobs:
+  build:
+    docker:
+      - image: node:latest
+
+    branches:
+      ignore:
+        - gh-pages # list of branches to ignore
+        - /release\\\\/.*/ # or ignore regexes
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum \\"package-lock.json\\" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: npm install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum \\"package-lock.json\\" }}
+
+      - run:
+          name: test
+          command: npm run test:cov
+      - run:
+          name: upload coverage
+          command: bash <(curl -s https://codecov.io/bash)
+
+"
+`;
+
+exports[`npm5: add unit test 1`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "index.js",
+  "package.json",
+  "test/index.test.js",
+]
+`;
+
+exports[`npm5: add unit test 2`] = `
+Object {
+  "devDependencies": Object {
+    "eslint-config-rem": "^3.0.0",
+    "jest-cli": "^22.1.4",
+    "xo": "^0.18.0",
+  },
+  "scripts": Object {
+    "lint": "xo",
+    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove sao-temp? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[34mhttp://donate.com\\\\u001b[0m')\\"",
+    "test": "npm run lint && jest",
+  },
+}
+`;
+
+exports[`support poi 1`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "example/index.js",
+  "package.json",
+  "src/index.js",
+]
+`;
+
+exports[`support poi 2`] = `
+Object {
+  "devDependencies": Object {
+    "bili": "^2.2.3",
+    "eslint-config-rem": "^3.0.0",
+    "poi": "^9.6.13",
+    "xo": "^0.18.0",
+  },
+  "poi": Object {
+    "dist": "example/dist",
+    "entry": "example/index.js",
+    "homepage": "/",
+  },
+  "scripts": Object {
+    "build": "bili",
+    "build:example": "poi build",
+    "example": "poi",
+    "lint": "xo",
+    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove sao-temp? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[34mhttp://donate.com\\\\u001b[0m')\\"",
+    "prepublishOnly": "npm run build",
+    "test": "npm run lint && echo 'no tests!'",
+  },
+}
+`;
+
+exports[`use defaults 1`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "index.js",
+  "package.json",
+]
+`;
+
+exports[`yarn: unit test 1`] = `
+"version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    branches:
+      ignore:
+        - gh-pages # list of branches to ignore
+        - /release\\\\/.*/ # or ignore regexes
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum \\"yarn.lock\\" }}
+      - run:
+          name: install dependences
+          command: yarn
+      - save_cache:
+          key: dependency-cache-{{ checksum \\"yarn.lock\\" }}
+          paths:
+            - ./node_modules
+      - run:
+          name: test
+          command: yarn test
+"
+`;
+
+exports[`yarn: unit test 2`] = `
+Array [
+  ".editorconfig",
+  ".gitattributes",
+  ".gitignore",
+  "LICENSE",
+  "README.md",
+  "circle.yml",
+  "index.js",
+  "package.json",
+  "test/index.test.js",
+]
+`;

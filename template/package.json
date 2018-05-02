@@ -1,0 +1,77 @@
+{
+  "name": "<%= name %>",
+  "version": "0.0.0",
+  "description": "<%= description %>",
+  "repository": {
+    "url": "<%= username %>/<%= name %>",
+    "type": "git"
+  },
+  "main": <% if (compile) { %>"dist/<%= name %>.cjs.js"<% } else { %>"index.js"<% } %>,
+  <% if (cli) { %>"bin": "cli.js", <% } %>
+  "files": [
+    <% if (compile) { %>"dist"<% } else { %>"index.js"<% } %><% if (cli) { %>,
+    "cli.js"<% } %>
+  ],
+  "scripts": {<% if (coverage) { %>
+    "test:cov": "jest --coverage<% if (eslint !== 'disable') { %> && npm run lint<% } %>",<% } %>
+    "test": "<% if (eslint !== 'disable') { %>npm run lint<% } %><% if (unitTest) { %> && jest<% } else { %> && echo 'no tests!'<% } %>"<% if (eslint !== 'disable') { %>,
+    "lint": "<%= eslint %>"<% } %><% if (compile) { %>,
+    "prepublishOnly": "npm run build",
+    "build": "bili"<% } %><% if (poi) { %>,
+    "example": "poi",
+    "build:example": "poi build"
+    <% } %><% if (donateUrl && donateUrl !== 'none') { %>,
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove <%= name %>? You can now donate to support the author:\\u001b[22m\\u001b[39m\\n> \\u001b[34m<%= donateUrl %>\\u001b[0m')\""
+    <% } %>
+  },
+  "author": "<%= username %> <<%= email %>>",
+  "license": "MIT",<% if (poi) { %>
+  "poi": {
+    "entry": "example/index.js",
+    "dist": "example/dist",
+    "homepage": "/"
+  },
+  <%_ } -%>
+  <%_ if (unitTest) { -%>
+  "jest": {
+    "testEnvironment": "node"
+  },
+  <%_ } -%>
+  <%_ if (compile && unitTest) { -%>
+  "babel": {
+    "env": {
+      "test": {
+        "presets": [
+          ["env", {
+            "targets": {
+              "node": "current"
+            }
+          }]
+        ]
+      }
+    }
+  },
+  <%_ } -%>
+  "dependencies": {<% if (cli) { %>
+    "cac": "^4.0.0"
+  <% } %>},
+  "devDependencies": {<% if (unitTest) { %>
+    "jest-cli": "^22.1.4"<% } %><% if (eslint === 'xo') { %><% if (unitTest) { %>,<% } %>
+    "eslint-config-rem": "^3.0.0",
+    "xo": "^0.18.0"<% } else if (eslint === 'standard') { %>,
+    "standard": "^10.0.0"<% } %><% if (compile) { %><% if (eslint !== 'disable' || unitTest) { %>,<% } %>
+    <%_ if (unitTest) { -%>
+    "babel-preset-env": "^1.4.0",
+    <%_ } -%>
+    <%_ if (poi) { -%>
+    "poi": "^9.6.13",
+    <%_ } -%>
+    "bili": "^2.2.3"<% } %>
+  }<% if (eslint === 'xo') { %>,
+  "xo": {
+    "extends": "rem"<% if (unitTest) { %>,
+    "envs": [
+      "jest"
+    ]<% } %>
+  }<%_ } %>
+}

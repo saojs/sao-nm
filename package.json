@@ -1,0 +1,49 @@
+{
+  "name": "sao-nm",
+  "version": "0.18.2",
+  "description": "Scaffolding out a node module.",
+  "repository": {
+    "url": "saojs/sao-nm",
+    "type": "git"
+  },
+  "scripts": {
+    "test": "jest && npm run lint",
+    "lint": "xo *.js test/*.js"
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "/template/"
+    ]
+  },
+  "author": "EGOIST <0x142857@gmail.com>",
+  "license": "MIT",
+  "files": [
+    "saofile.js",
+    "template"
+  ],
+  "keywords": [
+    "sao",
+    "generator",
+    "sao-generator",
+    "nm",
+    "node-modules",
+    "npm",
+    "package"
+  ],
+  "xo": {
+    "extends": "rem",
+    "envs": [
+      "jest"
+    ]
+  },
+  "dependencies": {
+    "camelcase": "^4.0.0",
+    "superb": "^1.3.0"
+  },
+  "devDependencies": {
+    "eslint-config-rem": "^4.0.0",
+    "jest": "^22.4.3",
+    "sao": "^1.0.0-alpha.1",
+    "xo": "^0.20.3"
+  }
+}

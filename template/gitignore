@@ -1,0 +1,7 @@
+node_modules
+<%_ if (compile) { -%>
+dist/
+<%_ } -%>
+<%_ if (coverage) { -%>
+coverage/
+<%_ } -%>
