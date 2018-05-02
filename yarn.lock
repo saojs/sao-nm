@@ -4327,9 +4327,9 @@ sane@^2.0.0:
   optionalDependencies:
     fsevents "^1.1.1"
 
-sao@^1.0.0-alpha.1:
-  version "1.0.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/sao/-/sao-1.0.0-alpha.1.tgz#6ca40928f7a1c24e3b2f41e1866956e2e537f5e3"
+sao@^1.0.0-alpha.2:
+  version "1.0.0-alpha.2"
+  resolved "https://registry.yarnpkg.com/sao/-/sao-1.0.0-alpha.2.tgz#96f07b605f36a7c942e2b570e61cb83fdfef6914"
   dependencies:
     cac "^5.0.10"
     chalk "^2.4.0"
