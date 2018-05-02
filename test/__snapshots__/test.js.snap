@@ -113,7 +113,6 @@ Object {
   },
   "scripts": Object {
     "lint": "xo",
-    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove sao-temp? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[34mhttp://donate.com\\\\u001b[0m')\\"",
     "test": "npm run lint && jest",
   },
 }
@@ -151,7 +150,6 @@ Object {
     "build:example": "poi build",
     "example": "poi",
     "lint": "xo",
-    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove sao-temp? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[34mhttp://donate.com\\\\u001b[0m')\\"",
     "prepublishOnly": "npm run build",
     "test": "npm run lint && echo 'no tests!'",
   },
