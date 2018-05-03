@@ -2,6 +2,12 @@ const superb = require('superb')
 const camelcase = require('camelcase')
 
 module.exports = {
+  generators: [
+    {
+      name: 'donation',
+      from: './generators/donation'
+    }
+  ],
   prompts: [
     {
       name: 'name',
@@ -91,13 +97,6 @@ module.exports = {
       name: 'twitter',
       message: 'What is your twitter username?',
       store: true
-    },
-    {
-      name: 'donateUrl',
-      message: 'The URL where users can donate to your project',
-      store: true,
-      default: 'none',
-      filter: v => (/^https?:\/\//.test(v) ? v : 'none')
     }
   ],
   actions: [

@@ -19,7 +19,8 @@
   "license": "MIT",
   "files": [
     "saofile.js",
-    "template"
+    "template",
+    "generators/"
   ],
   "keywords": [
     "sao",
