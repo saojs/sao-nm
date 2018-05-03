@@ -22,7 +22,8 @@ test('use defaults', async () => {
       outDir: helper.sao.options.outDir
     },
     {
-      donateUrl: 'http://donate.com'
+      name: 'project name',
+      url: 'http://donate.com'
     }
   )
   expect(
