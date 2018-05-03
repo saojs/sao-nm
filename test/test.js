@@ -14,6 +14,20 @@ const getPkg = (pkg, fields) => {
 test('use defaults', async () => {
   const helper = await sao.mockPrompt(generator, {})
   expect(helper.fileList).toMatchSnapshot()
+  expect(getPkg(helper.readFile('package.json'), ['scripts'])).toMatchSnapshot()
+
+  const helper2 = await sao.mockPrompt(
+    {
+      from: `${generator}:donation`,
+      outDir: helper.sao.options.outDir
+    },
+    {
+      donateUrl: 'http://donate.com'
+    }
+  )
+  expect(
+    getPkg(helper2.readFile('package.json'), ['scripts'])
+  ).toMatchSnapshot('should have postinstall script')
 })
 
 test('npm5: add unit test', async () => {
@@ -22,7 +36,9 @@ test('npm5: add unit test', async () => {
   })
 
   expect(helper.fileList).toMatchSnapshot()
-  expect(getPkg(helper.readFile('package.json'), ['scripts', 'devDependencies'])).toMatchSnapshot()
+  expect(
+    getPkg(helper.readFile('package.json'), ['scripts', 'devDependencies'])
+  ).toMatchSnapshot()
 })
 
 test('npm5: add coverage', async () => {
@@ -40,7 +56,9 @@ test('add cli', async () => {
     cli: true
   })
   expect(helper.fileList).toMatchSnapshot()
-  expect(getPkg(helper.readFile('package.json'), ['bin', 'dependencies'])).toMatchSnapshot()
+  expect(
+    getPkg(helper.readFile('package.json'), ['bin', 'dependencies'])
+  ).toMatchSnapshot()
 })
 
 test('yarn: unit test', async () => {
@@ -59,17 +77,11 @@ test('support poi', async () => {
     poi: true
   })
   expect(helper.fileList).toMatchSnapshot()
-  expect(getPkg(helper.readFile('package.json'), [
-    'scripts',
-    'poi',
-    'devDependencies'
-  ])).toMatchSnapshot()
-})
-
-test('donateUrl', async () => {
-  const helper = await sao.mockPrompt(generator, {
-    donateUrl: 'http://donate.com'
-  })
-  expect(helper.fileList).toMatchSnapshot()
-  expect(getPkg(helper.readFile('package.json'), ['scripts'])).toMatchSnapshot()
+  expect(
+    getPkg(helper.readFile('package.json'), [
+      'scripts',
+      'poi',
+      'devDependencies'
+    ])
+  ).toMatchSnapshot()
 })

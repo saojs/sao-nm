@@ -23,29 +23,6 @@ Object {
 }
 `;
 
-exports[`donateUrl 1`] = `
-Array [
-  ".editorconfig",
-  ".gitattributes",
-  ".gitignore",
-  "LICENSE",
-  "README.md",
-  "circle.yml",
-  "index.js",
-  "package.json",
-]
-`;
-
-exports[`donateUrl 2`] = `
-Object {
-  "scripts": Object {
-    "lint": "xo",
-    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove sao-temp? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[34mhttp://donate.com\\\\u001b[0m')\\"",
-    "test": "npm run lint && echo 'no tests!'",
-  },
-}
-`;
-
 exports[`npm5: add coverage 1`] = `
 Array [
   ".editorconfig",
@@ -167,6 +144,25 @@ Array [
   "index.js",
   "package.json",
 ]
+`;
+
+exports[`use defaults 2`] = `
+Object {
+  "scripts": Object {
+    "lint": "xo",
+    "test": "npm run lint && echo 'no tests!'",
+  },
+}
+`;
+
+exports[`use defaults: should have postinstall script 1`] = `
+Object {
+  "scripts": Object {
+    "lint": "xo",
+    "postinstall": "node -e \\"console.log('\\\\u001b[35m\\\\u001b[1mLove Peco? You can now donate to support the author:\\\\u001b[22m\\\\u001b[39m\\\\n> \\\\u001b[36mhttps://patreon.com/egoist\\\\u001b[39m')\\"",
+    "test": "npm run lint && echo 'no tests!'",
+  },
+}
 `;
 
 exports[`yarn: unit test 1`] = `
