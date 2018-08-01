@@ -29,7 +29,7 @@ module.exports = {
       }
     ].filter(Boolean)
   },
-  async complete() {
+  async completed() {
     if (this.answers.url === 'none') {
       this.logger.warn('Skipped!')
     } else {
