@@ -129,7 +129,7 @@ module.exports = {
       }
     }
   ],
-  async complete() {
+  async completed() {
     await this.gitInit()
     await this.npmInstall({ packageManager: this.answers.pm })
     this.showCompleteTips()
