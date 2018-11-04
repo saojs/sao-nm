@@ -3,7 +3,7 @@ module.exports = {
   prompts: [
     {
       name: 'name',
-      default: '[pkg.name]',
+      default: '{pkg.name}',
       message: 'Your project name',
       required: true
     },
@@ -11,8 +11,8 @@ module.exports = {
       name: 'url',
       message: 'The URL where users can donate to your project',
       store: true,
-      default: 'none',
-      filter: v => (/^https?:\/\//.test(v) ? v : 'none')
+      required: true,
+      validate: v => /^https?:\/\//.test(v)
     }
   ],
   actions() {
@@ -30,11 +30,7 @@ module.exports = {
     ].filter(Boolean)
   },
   async completed() {
-    if (this.answers.url === 'none') {
-      this.logger.warn('Skipped!')
-    } else {
-      this.logger.success('Added "postinstall" script in package.json!')
-      this.logger.tip(`Run ${this.color.cyan(`${await this.determinePackageManager()} run postinstall`)} to see the effect.`)
-    }
+    this.logger.success('Added "postinstall" script in package.json!')
+    this.logger.tip(`Run ${this.chalk.cyan(`${this.npmClient} run postinstall`)} to see the effect.`)
   }
 }

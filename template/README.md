@@ -8,7 +8,7 @@
 ## Install
 
 ```bash
-<% if (pm === 'yarn') { %>yarn add<% } else { %>npm i<% } %> <%= name %>
+<% if (context.npmClient === 'yarn') { %>yarn add<% } else { %>npm i<% } %> <%= name %>
 ```
 
 ## Usage
