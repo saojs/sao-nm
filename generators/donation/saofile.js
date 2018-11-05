@@ -1,20 +1,31 @@
+
+const fs = require('fs')
+const path = require('path')
+
 module.exports = {
-  description: 'Add a postinstall script to show donation URL',
-  prompts: [
-    {
-      name: 'name',
-      default: '{pkg.name}',
-      message: 'Your project name',
-      required: true
-    },
-    {
-      name: 'url',
-      message: 'The URL where users can donate to your project',
-      store: true,
-      required: true,
-      validate: v => /^https?:\/\//.test(v)
+  description: 'Add a "postinstall" script to show donation URL',
+  prepare() {
+    if (!fs.existsSync(path.join(this.outPath, 'package.json'))) {
+      throw this.createError(`Cannot find package.json in ${this.outPath}`)
     }
-  ],
+  },
+  prompts() {
+    return [
+      {
+        name: 'name',
+        default: this.pkg.name || this.outFolder,
+        message: 'Your project name',
+        required: true
+      },
+      {
+        name: 'url',
+        message: 'The URL where users can donate to your project',
+        store: true,
+        required: true,
+        validate: v => /^https?:\/\//.test(v)
+      }
+    ]
+  },
   actions() {
     return [
       this.answers.url !== 'none' && {
@@ -31,6 +42,7 @@ module.exports = {
   },
   async completed() {
     this.logger.success('Added "postinstall" script in package.json!')
-    this.logger.tip(`Run ${this.chalk.cyan(`${this.npmClient} run postinstall`)} to see the effect.`)
+    const commands = [process.cwd() !== this.outPath &&`cd ${this.outPath}`, `${this.npmClient} run postinstall`].filter(Boolean)
+    this.logger.tip(`Run ${this.chalk.cyan(commands.join(' && '))} to see the effect.`)
   }
 }

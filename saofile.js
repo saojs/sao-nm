@@ -112,7 +112,8 @@ module.exports = {
           'cli.js': 'cli',
           'circle-npm.yml': this.npmClient === 'npm',
           'circle-yarn.yml': this.npmClient === 'yarn',
-          'example/**': 'poi'
+          'example/**': 'poi',
+          'poi.config.js': 'poi'
         }
       },
       {

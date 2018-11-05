@@ -18,18 +18,12 @@
     "lint": "<%= eslint %>"<% } %><% if (compile) { %>,
     "prepublishOnly": "npm run build",
     "build": "bili"<% } %><% if (poi) { %>,
-    "example": "poi",
+    "example": "poi dev",
     "build:example": "poi build"
     <% } %>
   },
   "author": "<%= username %> <<%= email %>>",
-  "license": "MIT",<% if (poi) { %>
-  "poi": {
-    "entry": "example/index.js",
-    "dist": "example/dist",
-    "homepage": "/"
-  },
-  <%_ } -%>
+  "license": "MIT",
   <%_ if (unitTest) { -%>
   "jest": {
     "testEnvironment": "node"
@@ -40,7 +34,7 @@
     "env": {
       "test": {
         "presets": [
-          ["env", {
+          ["@babel/preset-env", {
             "targets": {
               "node": "current"
             }
@@ -59,12 +53,12 @@
     "xo": "^0.18.0"<% } else if (eslint === 'standard') { %>,
     "standard": "^10.0.0"<% } %><% if (compile) { %><% if (eslint !== 'disable' || unitTest) { %>,<% } %>
     <%_ if (unitTest) { -%>
-    "babel-preset-env": "^1.4.0",
+    "@babel/preset-env": "^7.0.0",
     <%_ } -%>
     <%_ if (poi) { -%>
-    "poi": "^9.6.13",
+    "poi": "next",
     <%_ } -%>
-    "bili": "^2.2.3"<% } %>
+    "bili": "^3.3.0"<% } %>
   }<% if (eslint === 'xo') { %>,
   "xo": {
     "extends": "rem"<% if (unitTest) { %>,
