@@ -1,6 +1,6 @@
 {
   "name": "sao-nm",
-  "version": "0.2.2",
+  "version": "0.3.0-alpha.0",
   "description": "Scaffolding out a node module.",
   "repository": {
     "url": "saojs/sao-nm",
