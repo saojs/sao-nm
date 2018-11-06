@@ -3,7 +3,7 @@
 # <%= name %>
 
 [![NPM version](https://badgen.net/npm/v/<%= name %>)](https://npmjs.com/package/<%= name %>) [![NPM downloads](https://badgen.net/npm/dm/<%= name %>)](https://npmjs.com/package/<%= name %>) [![CircleCI](https://badgen.net/circleci/github/<%= username %>/<%= name %>/master)](https://circleci.com/gh/<%= username %>/<%= name %>/tree/master) <% if (coverage) { %> [![codecov](https://codecov.io/gh/<%= username %>/<%= name %>/branch/master/graph/badge.svg)](https://codecov.io/gh/<%= username %>/<%= name %>)
-<% } %> [![donate](https://badgen.net/badge/$/donate/ff69b4)](https://github.com/<%= username %>/donate)<% if (username === 'egoist') { %> [![chat](https://badgen.net/badge/chat%20on/discord/7289DA)](https://chat.egoist.moe)<% } %>
+<% } %><% if (username === 'egoist') { %> [![donate](https://badgen.net/badge/support%20me/donate/ff69b4)](https://patreon.com/egoist) [![chat](https://badgen.net/badge/chat%20on/discord/7289DA)](https://chat.egoist.moe)<% } %>
 
 ## Install
 

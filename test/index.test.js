@@ -28,7 +28,7 @@ test('add unit test', async () => {
 })
 
 test('add coverage', async () => {
-  const helper = await sao.mock({ generator } , {
+  const helper = await sao.mock({ generator }, {
     unitTest: true,
     coverage: true
   })
@@ -38,7 +38,7 @@ test('add coverage', async () => {
 })
 
 test('add cli', async () => {
-  const helper = await sao.mock({ generator } , {
+  const helper = await sao.mock({ generator }, {
     cli: true
   })
   expect(helper.fileList).toMatchSnapshot('files')
