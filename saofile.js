@@ -2,6 +2,7 @@ const superb = require('superb')
 const camelcase = require('camelcase')
 
 module.exports = {
+  description: 'Scaffolding out a node module.',
   transformerOptions: {
     context: {
       camelcase
