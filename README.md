@@ -27,9 +27,9 @@
 Install [SAO](https://github.com/saojs/sao) first.
 
 ```bash
-yarn global add sao@next
+yarn global add sao
 # or npm
-npm i -g sao@next
+npm i -g sao
 ```
 
 ### From git
