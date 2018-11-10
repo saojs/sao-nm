@@ -56,13 +56,13 @@ module.exports = {
       },
       {
         name: 'unitTest',
-        message: 'Do you need unit test?',
+        message: 'Do you need unit test',
         type: 'confirm',
         default: false
       },
       {
         name: 'coverage',
-        message: 'Do you want to add test coverage support?',
+        message: 'Do you want to add test coverage support',
         type: 'confirm',
         default: false,
         when: answers => answers.unitTest
@@ -76,7 +76,7 @@ module.exports = {
       },
       {
         name: 'compile',
-        message: 'Do you need to compile ES2015 code?',
+        message: 'Do you need to compile ES2015 code',
         type: 'confirm',
         default: false
       },
@@ -96,7 +96,7 @@ module.exports = {
       },
       {
         name: 'twitter',
-        message: 'What is your twitter username?',
+        message: 'What is your twitter username',
         store: true
       }
     ]
