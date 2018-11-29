@@ -15,7 +15,8 @@
   "scripts": {<% if (coverage) { %>
     "test:cov": "jest --coverage<% if (eslint !== 'disable') { %> && npm run lint<% } %>",<% } %>
     "test": "<% if (eslint !== 'disable') { %>npm run lint<% } %><% if (unitTest) { %> && jest<% } else { %> && echo 'no tests!'<% } %>"<% if (eslint !== 'disable') { %>,
-    "lint": "<%= eslint %>"<% } %><% if (compile) { %>,
+    "lint": "<%= eslint %>",
+    "lint:fix" "<%= eslint %> --fix"<% } %><% if (compile) { %>,
     "prepublishOnly": "npm run build",
     "build": "bili"<% } %><% if (poi) { %>,
     "example": "poi dev",
@@ -24,6 +25,16 @@
   },
   "author": "<%= username %> <<%= email %>>",
   "license": "MIT",
+  <%_ if (eslint !== 'disable') { -%>
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": ["npm run lint:fix", "git add"]
+  }
+  <%_ } -%>
   <%_ if (unitTest) { -%>
   "jest": {
     "testEnvironment": "node"
@@ -49,9 +60,13 @@
   <% } %>},
   "devDependencies": {<% if (unitTest) { %>
     "jest-cli": "^22.1.4"<% } %><% if (eslint === 'xo') { %><% if (unitTest) { %>,<% } %>
-    "eslint-config-rem": "^3.0.0",
+    "eslint-config-prettier": "^3.3.0",
     "xo": "^0.18.0"<% } else if (eslint === 'standard') { %>,
     "standard": "^10.0.0"<% } %><% if (compile) { %><% if (eslint !== 'disable' || unitTest) { %>,<% } %>
+    <%_ if (eslint !== 'disable') { -%>
+    "lint-staged": "^7.2.0",
+    "husky": "^1.0.0-rc.13",
+    <%_ } -%>
     <%_ if (unitTest) { -%>
     "@babel/preset-env": "^7.0.0",
     <%_ } -%>
@@ -61,7 +76,7 @@
     "bili": "^3.3.0"<% } %>
   }<% if (eslint === 'xo') { %>,
   "xo": {
-    "extends": "rem"<% if (unitTest) { %>,
+    "extends": "prettier"<% if (unitTest) { %>,
     "envs": [
       "jest"
     ]<% } %>
