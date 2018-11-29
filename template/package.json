@@ -16,7 +16,7 @@
     "test:cov": "jest --coverage<% if (eslint !== 'disable') { %> && npm run lint<% } %>",<% } %>
     "test": "<% if (eslint !== 'disable') { %>npm run lint<% } %><% if (unitTest) { %> && jest<% } else { %> && echo 'no tests!'<% } %>"<% if (eslint !== 'disable') { %>,
     "lint": "<%= eslint %>",
-    "lint:fix" "<%= eslint %> --fix"<% } %><% if (compile) { %>,
+    "lint:fix": "<%= eslint %> --fix"<% } %><% if (compile) { %>,
     "prepublishOnly": "npm run build",
     "build": "bili"<% } %><% if (poi) { %>,
     "example": "poi dev",
@@ -33,7 +33,7 @@
   },
   "lint-staged": {
     "*.js": ["npm run lint:fix", "git add"]
-  }
+  },
   <%_ } -%>
   <%_ if (unitTest) { -%>
   "jest": {
