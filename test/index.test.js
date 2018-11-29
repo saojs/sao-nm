@@ -46,17 +46,3 @@ test('add cli', async () => {
     getPkg(await helper.readFile('package.json'), ['bin', 'dependencies'])
   ).toMatchSnapshot('package.json')
 })
-
-test('support poi', async () => {
-  const helper = await sao.mock({ generator }, {
-    compile: true,
-    poi: true
-  })
-  expect(helper.fileList).toMatchSnapshot('files')
-  expect(
-    getPkg(await helper.readFile('package.json'), [
-      'scripts',
-      'devDependencies'
-    ])
-  ).toMatchSnapshot('package.json')
-})
