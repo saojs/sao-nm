@@ -5,6 +5,7 @@ Array [
   ".editorconfig",
   ".gitattributes",
   ".gitignore",
+  ".prettierrc",
   "LICENSE",
   "README.md",
   "circle.yml",
@@ -18,7 +19,7 @@ exports[`add cli: package.json 1`] = `
 Object {
   "bin": "cli.js",
   "dependencies": Object {
-    "cac": "^4.0.0",
+    "cac": "^6.0.0",
   },
 }
 `;
@@ -58,6 +59,7 @@ Array [
   ".editorconfig",
   ".gitattributes",
   ".gitignore",
+  ".prettierrc",
   "LICENSE",
   "README.md",
   "circle.yml",
@@ -72,6 +74,7 @@ Array [
   ".editorconfig",
   ".gitattributes",
   ".gitignore",
+  ".prettierrc",
   "LICENSE",
   "README.md",
   "circle.yml",
@@ -84,47 +87,18 @@ Array [
 exports[`add unit test: package.json 1`] = `
 Object {
   "devDependencies": Object {
-    "eslint-config-rem": "^3.0.0",
-    "jest-cli": "^22.1.4",
-    "xo": "^0.18.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-config-rem": "^4.0.0",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.0.0-rc.13",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "^1.15.2",
+    "xo": "^0.23.0",
   },
   "scripts": Object {
     "lint": "xo",
     "test": "npm run lint && jest",
-  },
-}
-`;
-
-exports[`support poi: files 1`] = `
-Array [
-  ".editorconfig",
-  ".gitattributes",
-  ".gitignore",
-  "LICENSE",
-  "README.md",
-  "circle.yml",
-  "example/index.js",
-  "package.json",
-  "poi.config.js",
-  "src/index.js",
-]
-`;
-
-exports[`support poi: package.json 1`] = `
-Object {
-  "devDependencies": Object {
-    "bili": "^3.3.0",
-    "eslint-config-rem": "^3.0.0",
-    "poi": "next",
-    "xo": "^0.18.0",
-  },
-  "scripts": Object {
-    "build": "bili",
-    "build:example": "poi build",
-    "example": "poi dev",
-    "lint": "xo",
-    "prepublishOnly": "npm run build",
-    "test": "npm run lint && echo 'no tests!'",
   },
 }
 `;
@@ -134,6 +108,7 @@ Array [
   ".editorconfig",
   ".gitattributes",
   ".gitignore",
+  ".prettierrc",
   "LICENSE",
   "README.md",
   "circle.yml",

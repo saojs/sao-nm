@@ -81,13 +81,6 @@ module.exports = {
         default: false
       },
       {
-        name: 'poi',
-        type: 'confirm',
-        default: false,
-        message: 'Use Poi (poi.js.org) to run and build example',
-        when: answers => answers.compile
-      },
-      {
         name: 'cli',
         message: 'Do you want to add a CLI',
         type: 'confirm',
@@ -112,9 +105,7 @@ module.exports = {
           'index.js': '!compile',
           'cli.js': 'cli',
           'circle-npm.yml': this.npmClient === 'npm',
-          'circle-yarn.yml': this.npmClient === 'yarn',
-          'example/**': 'poi',
-          'poi.config.js': 'poi'
+          'circle-yarn.yml': this.npmClient === 'yarn'
         }
       },
       {
@@ -124,8 +115,14 @@ module.exports = {
           // Because when it's published to npm
           // `.gitignore` file will be ignored!
           gitignore: '.gitignore',
-          'circle-*.yml': 'circle.yml'
+          'circle-*.yml': 'circle.yml',
+          '_package.json': 'package.json'
         }
+      },
+      {
+        type: 'modify',
+        files: 'package.json',
+        handler: data => require('./lib/update-pkg')(this.answers, data)
       }
     ]
   },
