@@ -115,7 +115,8 @@ module.exports = {
           // Because when it's published to npm
           // `.gitignore` file will be ignored!
           gitignore: '.gitignore',
-          'circle-*.yml': 'circle.yml'
+          'circle-*.yml': 'circle.yml',
+          '_package.json': 'package.json'
         }
       },
       {
