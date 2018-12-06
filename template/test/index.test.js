@@ -1,3 +1,7 @@
+<%_ if (eslint === 'standard') { -%>
+/* global test, expect */
+<%_ } -%>
+
 <%_ if (compile) { -%>
 import <%= this.camelcase(name) %> from '../src'
 <%_ } else { -%>
