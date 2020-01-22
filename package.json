@@ -1,9 +1,9 @@
 {
-  "name": "sao-nm",
-  "version": "1.1.1",
+  "name": "sao-nm-ns",
+  "version": "0.0.1",
   "description": "Scaffolding out a node module.",
   "repository": {
-    "url": "saojs/sao-nm",
+    "url": "noblesamurai/sao-nm",
     "type": "git"
   },
   "scripts": {
