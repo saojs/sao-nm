@@ -50,39 +50,8 @@ module.exports = {
         name: 'website',
         message: 'What is the url of your website',
         default ({ username }) {
-          return `https://github.com/${username}`;
+          return 'https://github.com/noblesamurai/';
         },
-        store: true
-      },
-      {
-        name: 'unitTest',
-        message: 'Do you need unit test',
-        type: 'confirm',
-        default: false
-      },
-      {
-        name: 'coverage',
-        message: 'Do you want to add test coverage support',
-        type: 'confirm',
-        default: false,
-        when: answers => answers.unitTest
-      },
-      {
-        name: 'compile',
-        message: 'Do you need to compile ES2015 code',
-        type: 'confirm',
-        default: false
-      },
-      {
-        name: 'cli',
-        message: 'Do you want to add a CLI',
-        type: 'confirm',
-        default: false,
-        when: answers => !answers.compile
-      },
-      {
-        name: 'twitter',
-        message: 'What is your twitter username',
         store: true
       }
     ];
