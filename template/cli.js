@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-'use strict'
-const cac = require('cac')
-const main = require('./')
+'use strict';
+const cac = require('cac');
+const main = require('./');
 
-const cli = cac()
+const cli = cac();
 
 cli.command('*', 'My Default Command', (input, flags) => {
-  main(input, flags)
-})
+  main(input, flags);
+});
 
-cli.parse()
+cli.parse();

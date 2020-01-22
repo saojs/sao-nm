@@ -1,5 +1,5 @@
-const superb = require('superb')
-const camelcase = require('camelcase')
+const superb = require('superb');
+const camelcase = require('camelcase');
 
 module.exports = {
   description: 'Scaffolding out a node module.',
@@ -14,7 +14,7 @@ module.exports = {
       from: './generators/donation'
     }
   ],
-  prompts() {
+  prompts () {
     return [
       {
         name: 'name',
@@ -49,8 +49,8 @@ module.exports = {
       {
         name: 'website',
         message: 'What is the url of your website',
-        default({ username }) {
-          return `https://github.com/${username}`
+        default ({ username }) {
+          return `https://github.com/${username}`;
         },
         store: true
       },
@@ -66,13 +66,6 @@ module.exports = {
         type: 'confirm',
         default: false,
         when: answers => answers.unitTest
-      },
-      {
-        name: 'eslint',
-        message: 'Choose an ESLint tool',
-        type: 'list',
-        default: 'xo',
-        choices: ['xo', 'standard', 'disabled']
       },
       {
         name: 'compile',
@@ -92,9 +85,9 @@ module.exports = {
         message: 'What is your twitter username',
         store: true
       }
-    ]
+    ];
   },
-  actions() {
+  actions () {
     return [
       {
         type: 'add',
@@ -124,11 +117,11 @@ module.exports = {
         files: 'package.json',
         handler: data => require('./lib/update-pkg')(this.answers, data)
       }
-    ]
+    ];
   },
-  async completed() {
-    await this.gitInit()
-    await this.npmInstall({ packageManager: this.answers.pm })
-    this.showProjectTips()
+  async completed () {
+    await this.gitInit();
+    await this.npmInstall({ packageManager: this.answers.pm });
+    this.showProjectTips();
   }
-}
+};
