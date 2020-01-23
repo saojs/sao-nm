@@ -1,0 +1,2 @@
+- manage having a node- prefix on the repo name, but not the package name.
+- manage having a scoped package name.
