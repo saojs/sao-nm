@@ -53,6 +53,13 @@ module.exports = {
           return 'https://github.com/noblesamurai/';
         },
         store: true
+      },
+      {
+        name: 'license',
+        message: 'What is the license?',
+        type: 'list',
+        default: 'UNLICENSED',
+        choices: ['BSD-3-Clause', 'UNLICENSED']
       }
     ];
   },
@@ -60,15 +67,7 @@ module.exports = {
     return [
       {
         type: 'add',
-        files: '**',
-        filters: {
-          'test/**': 'unitTest',
-          'src/**': 'compile',
-          'index.js': '!compile',
-          'cli.js': 'cli',
-          'circle-npm.yml': this.npmClient === 'npm',
-          'circle-yarn.yml': this.npmClient === 'yarn'
-        }
+        files: '**'
       },
       {
         type: 'move',

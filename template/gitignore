@@ -1,7 +1,5 @@
-node_modules
-<%_ if (compile) { -%>
-dist/
-<%_ } -%>
-<%_ if (coverage) { -%>
+*.swp
+.DS_Store
+node_modules/
 coverage/
-<%_ } -%>
+.nyc_output/
