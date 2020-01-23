@@ -89,7 +89,7 @@ module.exports = {
   },
   async completed () {
     await this.gitInit();
-    await this.npmInstall({ packageManager: this.answers.pm });
+    await this.npmInstall({ packageManager: 'npm' });
     this.showProjectTips();
   }
 };
