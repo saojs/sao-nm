@@ -19,7 +19,7 @@ module.exports = {
       {
         name: 'name',
         message: 'What is the name of the new project',
-        default: this.outFolder
+        default: this.outFolder.replace('node-', '')
       },
       {
         name: 'description',
