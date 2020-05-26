@@ -28,6 +28,7 @@ This module is installed via npm:
 ``` bash
 $ npm install <%= name %>
 ```
+
 ## License
 <% if (license === 'BSD-3-Clause') { %>
 The BSD License
@@ -46,7 +47,7 @@ are permitted provided that the following conditions are met:
   list of conditions and the following disclaimer in the documentation and/or
   other materials provided with the distribution.
 
-* Neither the name of the <%= author %> nor the names of its
+* Neither the name of the copyright holder nor the names of its
   contributors may be used to endorse or promote products derived from
   this software without specific prior written permission.
 
