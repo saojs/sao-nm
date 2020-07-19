@@ -16,6 +16,9 @@ test('use defaults', async () => {
   const sao = new SAO({ generator, mock: true })
   await sao.run()
   expect(await sao.getOutputFiles()).toMatchSnapshot()
+  expect(
+    getPkg(await sao.readOutputFile('package.json'), ['scripts', 'devDependencies'])
+  ).toMatchSnapshot('package.json')
 })
 
 test('add unit test', async () => {
