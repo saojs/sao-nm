@@ -7,7 +7,8 @@
     "type": "git"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "node -e \"console.log('\\u001b[35m\\u001b[1mLove undefined? You can now donate to support the author:\\u001b[22m\\u001b[39m\\n> \\u001b[36mundefined\\u001b[39m')\""
   },
   "jest": {
     "modulePathIgnorePatterns": [
