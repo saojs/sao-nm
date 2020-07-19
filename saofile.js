@@ -1,97 +1,106 @@
+// @ts-check
 const superb = require('superb')
 const camelcase = require('camelcase')
 
-module.exports = {
+/** @type {import('sao').GeneratorConfig} */
+const config = {
   description: 'Scaffolding out a node module.',
-  transformerOptions: {
-    context: {
-      camelcase
-    }
-  },
-  generators: [
+  subGenerators: [
     {
       name: 'donation',
-      from: './generators/donation'
-    }
+      generator: './generators/donation',
+    },
   ],
   prompts() {
     return [
       {
+        type: 'input',
         name: 'name',
         message: 'What is the name of the new project',
-        default: this.outFolder
+        default: this.outFolder,
       },
       {
+        type: 'input',
         name: 'description',
         message: 'How would you describe the new project',
-        default: `my ${superb()} project`
+        default: `my ${superb.random()} project`,
       },
       {
+        type: 'input',
         name: 'author',
         message: 'What is your name',
         default: this.gitUser.name,
         store: true,
-        required: true
+        required: true,
       },
       {
+        type: 'input',
         name: 'username',
         message: 'What is your GitHub username',
-        default: ({ author }) => this.gitUser.username || author.toLowerCase(),
-        store: true
+        default: ({ answers }) =>
+          this.gitUser.username || answers.author.toLowerCase(),
+        store: true,
       },
       {
+        type: 'input',
         name: 'email',
         message: 'What is your GitHub email',
         default: this.gitUser.email,
         store: true,
-        validate: v => /.+@.+/.test(v)
+        validate: (v) => /.+@.+/.test(v),
       },
       {
+        type: 'input',
         name: 'website',
         message: 'What is the url of your website',
-        default({ username }) {
-          return `https://github.com/${username}`
+        default({ answers }) {
+          return `https://github.com/${answers.username}`
         },
-        store: true
+        store: true,
       },
       {
+        type: 'confirm',
         name: 'unitTest',
         message: 'Do you need unit test',
-        type: 'confirm',
-        default: false
+        default: false,
       },
       {
+        type: 'confirm',
         name: 'coverage',
         message: 'Do you want to add test coverage support',
-        type: 'confirm',
         default: false,
-        when: answers => answers.unitTest
+        skip({ answers }) {
+          return !answers.unitTest
+        },
       },
       {
+        type: 'select',
         name: 'eslint',
         message: 'Choose an ESLint tool',
-        type: 'list',
         default: 'xo',
-        choices: ['xo', 'standard', 'disabled']
+        choices: ['xo', 'standard', 'disabled'],
       },
       {
+        type: 'confirm',
         name: 'compile',
         message: 'Do you need to compile ES2015 code',
-        type: 'confirm',
-        default: false
+        default: false,
       },
       {
+        type: 'confirm',
         name: 'cli',
         message: 'Do you want to add a CLI',
-        type: 'confirm',
         default: false,
-        when: answers => !answers.compile
+        skip({ answers }) {
+          return answers.compile
+        },
       },
       {
+        type: 'input',
         name: 'twitter',
         message: 'What is your twitter username',
-        store: true
-      }
+        store: true,
+      },
     ]
   },
   actions() {
@@ -105,8 +114,11 @@ module.exports = {
           'index.js': '!compile',
           'cli.js': 'cli',
           'circle-npm.yml': this.npmClient === 'npm',
-          'circle-yarn.yml': this.npmClient === 'yarn'
-        }
+          'circle-yarn.yml': this.npmClient === 'yarn',
+        },
+        data: {
+          camelcase,
+        },
       },
       {
         type: 'move',
@@ -116,19 +128,22 @@ module.exports = {
           // `.gitignore` file will be ignored!
           gitignore: '.gitignore',
           'circle-*.yml': 'circle.yml',
-          '_package.json': 'package.json'
-        }
+          '_package.json': 'package.json',
+        },
       },
       {
         type: 'modify',
         files: 'package.json',
-        handler: data => require('./lib/update-pkg')(this.answers, data)
-      }
+        // @ts-ignore
+        handler: (data) => require('./lib/update-pkg')(this.answers, data),
+      },
     ]
   },
   async completed() {
     await this.gitInit()
-    await this.npmInstall({ packageManager: this.answers.pm })
+    await this.npmInstall({ npmClient: this.answers.pm })
     this.showProjectTips()
-  }
+  },
 }
+
+module.exports = config
