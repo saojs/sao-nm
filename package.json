@@ -1,5 +1,6 @@
 {
   "name": "@noblesam/sao-nm",
+  "main": ".",
   "version": "0.0.2",
   "description": "Scaffolding out a node module.",
   "repository": {
