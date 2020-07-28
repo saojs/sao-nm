@@ -1,7 +1,7 @@
 {
   "name": "@noblesam/sao-nm",
   "main": "saofile.js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Scaffolding out a node module.",
   "repository": {
     "url": "noblesamurai/sao-nm",
