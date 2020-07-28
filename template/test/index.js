@@ -1,3 +1,3 @@
-describe('my module', function () {
-  it('does things', function () {});
+describe('my module', () => {
+  it('does things', () => {});
 });
