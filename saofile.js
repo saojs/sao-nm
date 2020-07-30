@@ -1,5 +1,5 @@
-const superb = require('superb')
-const camelcase = require('camelcase')
+const superb = require('superb');
+const camelcase = require('camelcase');
 
 module.exports = {
   description: 'Scaffolding out a node module.',
@@ -14,12 +14,12 @@ module.exports = {
       from: './generators/donation'
     }
   ],
-  prompts() {
+  prompts () {
     return [
       {
         name: 'name',
         message: 'What is the name of the new project',
-        default: this.outFolder
+        default: this.outFolder.replace('node-', '')
       },
       {
         name: 'description',
@@ -36,7 +36,7 @@ module.exports = {
       {
         name: 'username',
         message: 'What is your GitHub username',
-        default: ({ author }) => this.gitUser.username || author.toLowerCase(),
+        default: ({ author }) => this.gitUser.username || author.toLowerCase().replace(/\s+/g, ''),
         store: true
       },
       {
@@ -49,64 +49,25 @@ module.exports = {
       {
         name: 'website',
         message: 'What is the url of your website',
-        default({ username }) {
-          return `https://github.com/${username}`
+        default ({ username }) {
+          return 'https://github.com/noblesamurai/';
         },
         store: true
       },
       {
-        name: 'unitTest',
-        message: 'Do you need unit test',
-        type: 'confirm',
-        default: false
-      },
-      {
-        name: 'coverage',
-        message: 'Do you want to add test coverage support',
-        type: 'confirm',
-        default: false,
-        when: answers => answers.unitTest
-      },
-      {
-        name: 'eslint',
-        message: 'Choose an ESLint tool',
+        name: 'license',
+        message: 'What is the license?',
         type: 'list',
-        default: 'xo',
-        choices: ['xo', 'standard', 'disabled']
-      },
-      {
-        name: 'compile',
-        message: 'Do you need to compile ES2015 code',
-        type: 'confirm',
-        default: false
-      },
-      {
-        name: 'cli',
-        message: 'Do you want to add a CLI',
-        type: 'confirm',
-        default: false,
-        when: answers => !answers.compile
-      },
-      {
-        name: 'twitter',
-        message: 'What is your twitter username',
-        store: true
+        default: 'UNLICENSED',
+        choices: ['BSD-3-Clause', 'UNLICENSED']
       }
-    ]
+    ];
   },
-  actions() {
+  actions () {
     return [
       {
         type: 'add',
-        files: '**',
-        filters: {
-          'test/**': 'unitTest',
-          'src/**': 'compile',
-          'index.js': '!compile',
-          'cli.js': 'cli',
-          'circle-npm.yml': this.npmClient === 'npm',
-          'circle-yarn.yml': this.npmClient === 'yarn'
-        }
+        files: '**'
       },
       {
         type: 'move',
@@ -124,11 +85,11 @@ module.exports = {
         files: 'package.json',
         handler: data => require('./lib/update-pkg')(this.answers, data)
       }
-    ]
+    ];
   },
-  async completed() {
-    await this.gitInit()
-    await this.npmInstall({ packageManager: this.answers.pm })
-    this.showProjectTips()
+  async completed () {
+    await this.gitInit();
+    await this.npmInstall({ npmClient: 'npm' });
+    this.showProjectTips();
   }
-}
+};

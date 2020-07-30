@@ -1,37 +1,73 @@
-<% const camelcasedName = this.camelcase(name) -%>
-
 # <%= name %>
 
-[![NPM version](https://badgen.net/npm/v/<%= name %>)](https://npmjs.com/package/<%= name %>) [![NPM downloads](https://badgen.net/npm/dm/<%= name %>)](https://npmjs.com/package/<%= name %>) [![CircleCI](https://badgen.net/circleci/github/<%= username %>/<%= name %>/master)](https://circleci.com/gh/<%= username %>/<%= name %>/tree/master) <% if (coverage) { %> [![codecov](https://codecov.io/gh/<%= username %>/<%= name %>/branch/master/graph/badge.svg)](https://codecov.io/gh/<%= username %>/<%= name %>)
-<% } %><% if (username === 'egoist') { %> [![donate](https://badgen.net/badge/support%20me/donate/ff69b4)](https://patreon.com/egoist) [![chat](https://badgen.net/badge/chat%20on/discord/7289DA)](https://chat.egoist.moe)<% } %>
+> <%= description %>
 
-## Install
-
-```bash
-<% if (context.npmClient === 'yarn') { %>yarn add<% } else { %>npm i<% } %> <%= name %>
-```
+## Purpose
+- What problem does this module solve? At least a few sentences.
+PLEASE_FILL_IN_HERE
 
 ## Usage
 
 ```js
-const <%= camelcasedName %> = require('<%= name %>')
-
-<%= camelcasedName %>()
-//=> foo
+// Several examples of usage.
+// Usually copying and pasting code from the tests and making the code standalone suffices.
+// PLEASE_FILL_IN_HERE
 ```
 
-## Contributing
+## API
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+PLEASE_FILL_IN_HERE
 
+Note: To regenerate this section from the jsdoc run `npm run docs` and paste
+the output above.
 
-## Author
+## Installation
 
-**<%= name %>** © [<%= author %>](https://github.com/<%= username %>), Released under the [MIT](./LICENSE) License.<br>
-Authored and maintained by <%= author %> with help from contributors ([list](https://github.com/<%= username %>/<%= name %>/contributors)).
+This module is installed via npm:
 
-> [<%= website.replace(/^https?:\/\//, '') %>](<%= website %>) · GitHub [@<%= author %>](https://github.com/<%= username%>)<% if (twitter) { %> · Twitter [@<%= twitter %>](https://twitter.com/<%= twitter %>)<% } %>
+``` bash
+$ npm install <%= name %>
+```
+
+## License
+<% if (license === 'BSD-3-Clause') { %>
+The BSD License
+
+Copyright (c) <%= (new Date()).getFullYear() %>, <%= author %>
+
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+* Redistributions of source code must retain the above copyright notice, this
+  list of conditions and the following disclaimer.
+
+* Redistributions in binary form must reproduce the above copyright notice, this
+  list of conditions and the following disclaimer in the documentation and/or
+  other materials provided with the distribution.
+
+* Neither the name of the copyright holder nor the names of its
+  contributors may be used to endorse or promote products derived from
+  this software without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+<% } else { %>
+Copyright (c) Noble Samurai Pty Ltd, 2008-<%= (new Date()).getFullYear() %>.  All Rights Reserved.
+
+This software is proprietary to and embodies the confidential technology of
+Noble Samurai Pty Ltd.  Possession, use, dissemination or copying of this
+software and media is authorised only pursuant to a valid written license from
+Noble Samurai Pty Ltd.  Questions or requests regarding permission may be sent
+by email to legal@noblesamurai.com or by post to PO Box 477, Blackburn Victoria
+3130, Australia.
+<% } %>
