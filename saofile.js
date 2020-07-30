@@ -36,7 +36,7 @@ module.exports = {
       {
         name: 'username',
         message: 'What is your GitHub username',
-        default: ({ author }) => this.gitUser.username || author.toLowerCase(),
+        default: ({ author }) => this.gitUser.username || author.toLowerCase().replace(/\s+/g, ''),
         store: true
       },
       {
