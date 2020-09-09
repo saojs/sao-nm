@@ -141,7 +141,7 @@ const config = {
   },
   async completed() {
     await this.gitInit()
-    await this.npmInstall({ npmClient: this.answers.pm })
+    await this.npmInstall()
     this.showProjectTips()
   },
 }
