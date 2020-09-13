@@ -17,7 +17,7 @@ const config = {
         type: 'input',
         name: 'name',
         message: 'What is the name of the new project',
-        default: this.outFolder,
+        default: this.outDirName,
       },
       {
         type: 'input',
