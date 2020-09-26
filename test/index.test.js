@@ -1,5 +1,6 @@
+// @ts-check
 const path = require('path')
-const sao = require('sao')
+const { SAO } = require('sao')
 
 const generator = path.join(__dirname, '..')
 
@@ -12,37 +13,56 @@ const getPkg = (pkg, fields) => {
 }
 
 test('use defaults', async () => {
-  const helper = await sao.mock({ generator })
-  expect(helper.fileList).toMatchSnapshot()
+  const sao = new SAO({ generator, mock: true })
+  await sao.run()
+  expect(await sao.getOutputFiles()).toMatchSnapshot()
+  expect(
+    getPkg(await sao.readOutputFile('package.json'), ['scripts', 'devDependencies'])
+  ).toMatchSnapshot('package.json')
 })
 
 test('add unit test', async () => {
-  const helper = await sao.mock({ generator }, {
-    unitTest: true
+  const sao = new SAO({
+    generator,
+    mock: true,
+    answers: {
+      unitTest: true,
+    },
   })
+  await sao.run()
 
-  expect(helper.fileList).toMatchSnapshot('files')
+  expect(await sao.getOutputFiles()).toMatchSnapshot('files')
   expect(
-    getPkg(await helper.readFile('package.json'), ['scripts', 'devDependencies'])
+    getPkg(await sao.readOutputFile('package.json'), ['scripts', 'devDependencies'])
   ).toMatchSnapshot('package.json')
 })
 
 test('add coverage', async () => {
-  const helper = await sao.mock({ generator }, {
-    unitTest: true,
-    coverage: true
+  const sao = new SAO({
+    generator,
+    mock: true,
+    answers: {
+      unitTest: true,
+      coverage: true,
+    },
   })
+  await sao.run()
 
-  expect(helper.fileList).toMatchSnapshot('files')
-  expect(await helper.readFile('circle.yml')).toMatchSnapshot('circle.yml')
+  expect(await sao.getOutputFiles()).toMatchSnapshot('files')
+  expect(await sao.readOutputFile('circle.yml')).toMatchSnapshot('circle.yml')
 })
 
 test('add cli', async () => {
-  const helper = await sao.mock({ generator }, {
-    cli: true
+  const sao = new SAO({
+    generator,
+    mock: true,
+    answers: {
+      cli: true,
+    },
   })
-  expect(helper.fileList).toMatchSnapshot('files')
+  await sao.run()
+  expect(await sao.getOutputFiles()).toMatchSnapshot('files')
   expect(
-    getPkg(await helper.readFile('package.json'), ['bin', 'dependencies'])
+    getPkg(await sao.readOutputFile('package.json'), ['bin', 'dependencies'])
   ).toMatchSnapshot('package.json')
 })

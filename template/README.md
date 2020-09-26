@@ -1,4 +1,4 @@
-<% const camelcasedName = this.camelcase(name) -%>
+<% const camelcasedName = camelcase(name) -%>
 
 # <%= name %>
 
